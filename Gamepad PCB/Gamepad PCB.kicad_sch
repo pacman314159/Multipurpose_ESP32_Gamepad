@@ -4,6 +4,14 @@
 	(generator_version "9.0")
 	(uuid "02a2a33a-a1d9-41d7-8ce4-5589f13c7678")
 	(paper "A4")
+	(title_block
+		(title "Multipurpose ESP32 Gamepad")
+		(date "2025-07-30")
+		(rev "v03")
+		(company "PCM Industries")
+		(comment 1 "Author: Pacman Ng")
+		(comment 2 "Manufacturer: JLCPCB")
+	)
 	(lib_symbols
 		(symbol "2N2222:2N2222"
 			(pin_names
