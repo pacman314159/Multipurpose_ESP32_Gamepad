@@ -1,16 +1,16 @@
 #include <Arduino.h>
+#include "tasks/task_manager.h"
+#include "hardware/hardware_manager.h"
+#include "ui/ui_manager.h"
 
-const int interval = 400;
-
-void setup(){
-  pinMode(13, 1);
-  Serial.begin(19200);
+void setup() {
+  HardwareManager::init();
+  UIManager::init();
+  xTaskCreatePinnedToCore(rgb_led_task, "RGB LED TASK", 4096, NULL, 1, NULL, 0);
+  xTaskCreatePinnedToCore(lvgl_background_task, "LVGL LOOP TASK", 4096, NULL, 1, NULL, 0);
 }
 
-void loop(){
+void loop() {
   Serial.println("helloworld");
-  digitalWrite(13, HIGH);
-  delay(interval);
-  digitalWrite(13, LOW);
-  delay(interval);
+  delay(250);
 }
