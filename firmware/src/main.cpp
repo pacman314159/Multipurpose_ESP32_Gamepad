@@ -6,11 +6,12 @@
 void setup() {
   HardwareManager::init();
   UIManager::init();
-  xTaskCreatePinnedToCore(rgb_led_task, "RGB LED TASK", 4096, NULL, 1, NULL, 0);
+
   xTaskCreatePinnedToCore(lvgl_background_task, "LVGL LOOP TASK", 4096, NULL, 1, NULL, 0);
+  xTaskCreatePinnedToCore(joystick_raw_reading_task, "JOYSTICK RAW READING", 4096, NULL, 1, NULL, 0);
 }
 
 void loop() {
-  Serial.println("helloworld");
-  delay(250);
+  // Serial.println("helloworld");
+  // delay(250);
 }

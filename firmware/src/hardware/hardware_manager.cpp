@@ -1,18 +1,31 @@
-#include "hardware_manager.h"
+#include "hardware/hardware_manager.h"
 
-Adafruit_NeoPixel HardwareManager::led_rgb = Adafruit_NeoPixel(NUM_RGB_LEDS, RGB_LED_PIN, NEO_GRB + NEO_KHZ800);
 TFT_eSPI HardwareManager::lcd = TFT_eSPI();
+Adafruit_LC709203F HardwareManager::fuel_gauge = Adafruit_LC709203F();
+Adafruit_ADS1015 HardwareManager::adc = Adafruit_ADS1015();
 
 void HardwareManager::init() {
   Serial.begin(115200);
-
-  led_rgb.begin();
-  led_rgb.setBrightness(50);
-  led_rgb.show();
+  Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN, I2C_TRANSMISSION_FREQUENCY);
 
   lcd.init();
-  lcd.setRotation(1);
+  lcd.setRotation(2); //0: portrait, 1 landscape (CW), 2 portrait (down), 3 lanscape (CCW)
+
+  fuel_gauge.begin();
+
+  //init adc
+  adc.begin();
+  adc.setGain(GAIN_ONE);
 }
 
-Adafruit_NeoPixel& HardwareManager::get_led_rgb(){ return led_rgb; }
-TFT_eSPI& HardwareManager::getLCD() { return lcd; }
+TFT_eSPI& HardwareManager::get_lcd() {
+  return lcd;
+}
+
+Adafruit_LC709203F& HardwareManager::get_fuel_gauge() {
+  return fuel_gauge;
+}
+
+Adafruit_ADS1015& HardwareManager::get_adc(){
+  return adc;
+}
