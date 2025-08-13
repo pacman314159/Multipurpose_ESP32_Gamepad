@@ -8,10 +8,10 @@ void setup() {
   UIManager::init();
 
   xTaskCreatePinnedToCore(lvgl_background_task, "LVGL LOOP TASK", 4096, NULL, 1, NULL, 0);
-  xTaskCreatePinnedToCore(joystick_raw_reading_task, "JOYSTICK RAW READING", 4096, NULL, 1, NULL, 0);
+  // xTaskCreatePinnedToCore(joysticks_calib_task, "JOYSTICKS CALIBRATION TASK", 4096, NULL, 1, NULL, 0);
+  // xTaskCreatePinnedToCore(joysticks_reading_task, "JOYSTICKS READING TASK", 4096, NULL, 1, NULL, 0);
+  xTaskCreatePinnedToCore(shift_in_reading_tasks, "SHIFT IN READING TASK", 4096, NULL, 1, NULL, 0);
 }
 
 void loop() {
-  // Serial.println("helloworld");
-  // delay(250);
 }

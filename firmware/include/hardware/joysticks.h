@@ -2,28 +2,30 @@
 #define JOYSTICKS_H
 
 #include <Arduino.h>
-#include "hardware/hardware_manager.h"
+#include "hardware_manager.h"
 
 #define JOYSTICK_MIN 0
-#define JOYSTICK_MAX 2000
+#define JOYSTICK_MAX 1000
 
-enum JoystickChannels {
-  pitch_channel,
-  roll_channel,
+enum joystick_channels{
   yaw_channel,
-  throttle_channel
+  throttle_channel,
+  pitch_channel,
+  roll_channel
 };
 
 class Joysticks {
-private:
+public:
+  static bool calibrated;
+
   // Calibration ranges
-  static int pitch_raw_min, pitch_raw_max;
-  static int roll_raw_min, roll_raw_max;
-  static int yaw_raw_min, yaw_raw_max;
-  static int throttle_raw_min, throttle_raw_max;
+  static int16_t pitch_raw_min, pitch_raw_max;
+  static int16_t roll_raw_min, roll_raw_max;
+  static int16_t yaw_raw_min, yaw_raw_max;
+  static int16_t throttle_raw_min, throttle_raw_max;
 
 public:
-  static int pitch_raw, roll_raw, yaw_raw, throttle_raw;
+  static int16_t pitch_raw, roll_raw, yaw_raw, throttle_raw;
   static int pitch, roll, yaw, throttle;
 
 public:
@@ -40,7 +42,6 @@ public:
   static int get_yaw();
   static int get_throttle();
   static void update_data_scaled();
-
 };
 
 #endif

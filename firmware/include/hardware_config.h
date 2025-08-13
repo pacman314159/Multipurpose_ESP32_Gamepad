@@ -2,7 +2,6 @@
 #define HARDWARE_CONFIG_H
 
 // Electrical Connection
-
 #define I2C_SDA_PIN                     41
 #define I2C_SCL_PIN                     42
 
@@ -29,8 +28,16 @@
 #define BUZZER_PIN                      47
 #define VIBRATION_MOTOR_PIN             48
 
-//
+#define SHIFT_REG_Q7_BAR_PIN            37
+#define SHIFT_REG_CP_PIN                38
+#define SHIFT_REG_CE_PIN                39
+#define SHIFT_REG_PL_BAR_PIN            40
 
+#define MUX_S0_PIN                      36
+#define MUX_S1_PIN                      35
+
+//
 #define I2C_TRANSMISSION_FREQUENCY      100000
+#define FLASH_MEMORY_SIZE               4096 // bytes
 
 #endif
